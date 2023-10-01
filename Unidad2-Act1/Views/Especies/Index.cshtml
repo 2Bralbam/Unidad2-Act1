@@ -1,0 +1,22 @@
+﻿@model Unidad2_Act1.Models.ViewModels.IndexEspeciesViewModel;
+@{
+    Layout = "Layout";
+}
+<h1>
+    <img src="~/clases/@(Model.IdClase).png" /> @Model.Especie.Replace("-"," ")
+</h1>
+
+<div class="listaEspecies2">
+    @foreach(var animal in Model.Animales)
+    {
+        <a href="~/Especie/Index?Animal=@(animal.Nombre.Replace(" ","-"))">
+            <img src="~/especies/@(animal.IdFoto).jpg" title="@animal.Nombre" />
+        </a>
+    }
+</div>
+
+<script>
+
+    var c = document.querySelector("main h1 img").cloneNode();
+    document.querySelector("main h1").appendChild(c);
+</script>

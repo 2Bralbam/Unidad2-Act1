@@ -1,0 +1,369 @@
+﻿html, body {
+    background: url(bg.png);
+    margin: 0;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    padding-top: 70px;
+}
+
+header {
+    padding: 0 100px;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    width: calc(100% - 200px);
+    background: url(bg2.png);
+    border-bottom: 1px solid #9ed0a4;
+}
+
+    header h1 {
+        margin: 0;
+        float: left;
+        margin: 10px;
+    }
+
+        header h1 a {
+            text-decoration: none;
+            color: black;
+        }
+
+            header h1 a b {
+                color: #5cb85c;
+            }
+
+    header nav {
+        height: 70px;
+        float: right;
+    }
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav > ul li {
+    height: 70px;
+    width: 140px;
+    float: left;
+}
+
+nav ul li:hover {
+    background-color: #9ed0a4;
+}
+
+nav > ul li a {
+    font-weight: bold;
+    color: #5cb85c;
+    text-decoration: none;
+    display: block;
+    line-height: 70px;
+    text-align: center;
+}
+
+nav ul li:hover a {
+    color: black;
+}
+
+nav ul li ul {
+    display: none;
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul ul li {
+    background-color: white;
+    height: 30px;
+}
+
+    nav ul ul li a {
+        background-color: white;
+        line-height: 30px;
+        font-weight: normal;
+    }
+
+        nav ul ul li a:hover {
+            background-color: white;
+            line-height: 30px;
+            font-weight: normal;
+            background-color: #9ed0a4;
+        }
+
+main {
+    min-height: calc(100% - 90px);
+}
+
+    main h1 {
+        font-weight: lighter;
+        line-height: 1.1;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+.slides {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+}
+
+    .slides img {
+        width: 100%;
+    }
+
+.clases {
+    width: 900px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+    .clases div {
+        float: left;
+        padding: 10px;
+        width: 280px;
+    }
+
+        .clases div a {
+            display: block;
+            width: 280px;
+            text-decoration: none;
+        }
+
+        .clases div img {
+            width: 150px;
+            height: 150px;
+            display: block;
+            margin: auto;
+            border-radius: 75px;
+        }
+
+        .clases div h1 {
+            font-size: large;
+            font-weight: normal;
+            color: black;
+        }
+
+        .clases div p {
+            font-size: smaller;
+            font-weight: lighter;
+            color: black;
+            ;
+        }
+
+footer {
+    clear: both;
+    text-align: center;
+    margin: 20px;
+    font-size: small;
+    color: #5cb85c;
+}
+
+
+.especies {
+    width: calc(90% - 20px);
+    margin: 10px auto;
+    padding: 0;
+    list-style: none;
+    border: 1px dotted #9ed0a4;
+    overflow: auto;
+}
+
+    .especies li {
+        float: left;
+        height: 180px;
+        width: calc(50% - 41px);
+        padding: 20px;
+        border-bottom: 1px dotted #9ed0a4;
+    }
+
+        .especies li:nth-child(odd) {
+            border-right: 1px dotted #9ed0a4;
+        }
+
+
+        .especies li div {
+            width: 100px;
+            background-color: red;
+        }
+
+            .especies li div img {
+                float: left;
+                max-width: 100%;
+                margin: 10px auto;
+                display: block;
+            }
+
+    .especies h2, .especies p {
+        width: calc(100% - 110px);
+        float: right;
+        margin: 0;
+    }
+
+        .especies p:last-child {
+            clear: both;
+            width: 100%;
+        }
+
+        .especies h2, .especies p label {
+            color: #5cb85c;
+            font-weight: bold;
+        }
+
+
+form {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #9ed0a4;
+    margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.57);
+    overflow: auto;
+}
+
+    form label {
+        width: 100px;
+        float: left;
+        display: block;
+        height: 30px;
+        margin-bottom: 5px;
+    }
+
+    form input, form select, form textarea, .btn {
+        width: calc(100% - 100px);
+        float: left;
+        display: block;
+        height: 30px;
+        margin-bottom: 5px;
+    }
+
+    form textarea {
+        width: 100%;
+        height: 60px;
+        resize: none;
+    }
+
+    form p {
+        clear: both;
+    }
+
+    form .error, .validation-summary-errors {
+        clear: both;
+        /*text-align: center;*/
+        color: red;
+        font-size: small;
+    }
+
+    form input[type=button], form input[type=submit], .btn {
+        text-decoration: none;
+        -webkit-appearance: push-button;
+        user-select: none;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 1px 6px;
+        border-width: 2px;
+        border-style: outset;
+        border-color: buttonface;
+        border-image: initial;
+        background-color: #9ed0a4;
+        color: #000;
+        width: 100px;
+        margin-right: 5px;
+    }
+
+table {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #9ed0a4;
+    margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.57);
+}
+
+    table img {
+        height: 20px;
+    }
+
+    table a {
+        text-decoration: none;
+        color: black;
+        margin-right: 20px;
+    }
+
+.center {
+    text-align: center;
+}
+
+caption {
+    padding: 20px;
+    font-size: large;
+}
+
+.especieficha1 {
+    background-color: white;
+    padding: 10px;
+    margin: 20px auto;
+    -moz-box-shadow: 1px 2px black;
+    -webkit-box-shadow: 1px 2px black;
+    box-shadow: 1px 2px black;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 80%;
+    grid-column-gap: 50px;
+}
+
+    .especieficha1 img {
+        max-height: 300px;
+        max-width: 100%;
+    }
+
+    .especieficha1 p {
+        width: 280px;
+        hyphens: auto;
+    }
+
+    .especieficha1 label {
+        color: #5cb85c;
+        font-weight: bold;
+        width: 100px;
+        display: inline-block;
+    }
+
+    .especieficha1 h1 {
+        color: #5cb85c;
+        font-weight: bolder;
+    }
+
+    .especieficha1 > a {
+        color: #5cb85c;
+        font-weight: bolder;
+        text-align: center;
+        margin: 10px;
+        grid-column: span 2;
+    }
+
+    .especieficha1 p a {
+        color: #5cb85c;
+    }
+
+.listaEspecies2 {
+    display: flex;
+    margin:20px auto;
+    width:90%;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+
+.listaEspecies2 img {
+    padding:0 0 10px 10px;
+    text-align:center;
+    max-height:150px;
+    max-width:150px;
+}
+
+main h1 img:nth-of-type(2){
+    transform:scaleX(-1);
+}
