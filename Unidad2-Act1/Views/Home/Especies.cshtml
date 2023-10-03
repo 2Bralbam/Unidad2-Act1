@@ -7,9 +7,9 @@
 </h1>
 
 <div class="listaEspecies2">
-    @foreach(var animal in Model.Animales)
+    @foreach (var animal in Model.Animales)
     {
-        <a href="~/Especie/Index?Animal=@(animal.Nombre.Replace(" ","-"))">
+        <a href="~/Home/Especie?Id=@(animal.Nombre.Replace(" ","-"))">
             <img src="~/especies/@(animal.IdFoto).jpg" title="@animal.Nombre" />
         </a>
     }

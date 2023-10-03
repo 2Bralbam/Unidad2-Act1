@@ -12,7 +12,7 @@
     @foreach(var ClaseAnimal in Model.ClasesAnimales)
     {
         <div>
-            <a href="~/Especies/Index?Especie=@(ClaseAnimal.Nombre)">
+            <a href="~/Home/Especies?Id=@(ClaseAnimal.Nombre)">
                 <img src="~/clases/@(ClaseAnimal.Id).jpg" />
                 <h1>@ClaseAnimal.Nombre</h1>
                 <p>@ClaseAnimal.Observaciones</p>

@@ -3,10 +3,10 @@
     Layout = "Layout";
 }
 <div class="especieficha1">
-    <img src="especies/@(Model.FullAnimalDesc.IdFoto).jpg" />
+    <img src="~/especies/@(Model.FullAnimalDesc.IdFoto).jpg" />
     <div>
         <h1>@Model.FullAnimalDesc.Nombre</h1>
-        <p><label>Clase:</label><a href="~/Especies/Index?Especie=@(Model.FullAnimalDesc.NombreClase)">@Model.FullAnimalDesc.NombreClase</a></p>
+        <p><label>Clase:</label><a href="~/Home/Especies?Id=@(Model.FullAnimalDesc.NombreClase)">@Model.FullAnimalDesc.NombreClase</a></p>
         <p><label>Peso:</label>@Model.FullAnimalDesc.Peso</p>
         <p><label>Tamaño:</label>@Model.FullAnimalDesc.Tamaño</p>
         <p><label>Habitat:</label>@Model.FullAnimalDesc.Habitat</p>
@@ -14,5 +14,5 @@
         <p>@Model.FullAnimalDesc.Descripcion</p>
     </div>
 
-    <a href="~/Especies/Index?Especie=@(Model.FullAnimalDesc.NombreClase)">Regresar</a>
+    <a href="~/Home/Especies?Id=@(Model.FullAnimalDesc.NombreClase)">Regresar</a>
 </div>

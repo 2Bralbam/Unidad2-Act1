@@ -9,14 +9,6 @@ namespace Unidad2_Act1.Controllers
     public class HomeController : Controller
     {
         private readonly ZooplanetContext _context;
-        private Dictionary<string, string> EspeciesDescripción = new Dictionary<string, string>()
-            {
-                { "Aves", "Las aves son animales vertebrados que tienen plumas, pico y alas. Son ovíparos y su cuerpo está cubierto de plumas. Tienen un esqueleto ligero y hueco que les permite volar." },
-                { "Mamíferos", "Los mamíferos son animales vertebrados que tienen pelo o piel, glándulas mamarias y dientes diferenciados. Son vivíparos y se alimentan de leche materna durante la primera etapa de su vida." },
-                { "Peces", "Los peces son animales vertebrados acuáticos que tienen branquias para respirar. Su cuerpo está cubierto de escamas y tienen aletas para nadar. La mayoría de los peces son ovíparos." },
-                { "Anfibios", "Los anfibios son animales vertebrados que pasan por una metamorfosis desde su nacimiento hasta la edad adulta. Tienen una piel desnuda y húmeda, y respiran a través de branquias en su etapa larvaria y pulmones en su etapa adulta." },
-                { "Reptiles", "Los reptiles son animales vertebrados que tienen escamas en su cuerpo. Son ovíparos y respiran a través de pulmones. La mayoría de los reptiles son terrestres, aunque algunos pueden vivir en el agua." }
-            };
         public HomeController(ZooplanetContext context)
         {
             _context = context;
@@ -25,10 +17,53 @@ namespace Unidad2_Act1.Controllers
         {
             IEnumerable<ClaseAnimal> ClasesAnimales = _context.Clase.Select(x => new ClaseAnimal{
                 Nombre=x.Nombre != null ? x.Nombre : "Sin Nombre",
-                Id=x.Idclase,
-                Observaciones = EspeciesDescripción.Keys.Contains(x.Nombre) ? EspeciesDescripción[x.Nombre ?? " "] : "Sin Observaciones"
+                Id=x.Id,
+                Observaciones = x.Descripcion != null ? x.Descripcion : "Sin Descripción",
             }).ToList();
             vm.ClasesAnimales = ClasesAnimales;
+            return View(vm);
+        }
+        public IActionResult Especies(string Id)
+        {
+            IEnumerable<Animal> animales = _context.Especies.Where(x => x.IdClaseNavigation.Nombre == Id)
+                .Select(x=> new Animal 
+                {
+                    IdClase = x.IdClaseNavigation != null ? x.IdClaseNavigation.Id : 0,
+                    IdFoto = (int)(x.Id != 0 ? x.Id : 0), //IDFOTO
+                    Nombre = x.Especie
+                }).ToList();
+
+            IndexEspeciesViewModel vm = new IndexEspeciesViewModel
+            {
+                Animales = animales,
+                Especie = Id,
+                IdClase = animales.Select(x => x.IdClase).FirstOrDefault()
+            };
+
+            return View(vm);
+        }
+        public IActionResult Especie(string Id)
+        {
+            string nombreFormateado = Id.Replace("-", " ");
+            FullAnimalDescription InfoAnimal = _context.Especies
+                .Include(x => x.IdClaseNavigation)
+                .Where(x => x.Especie == nombreFormateado)
+                .Select(x => new FullAnimalDescription
+                {
+                    Nombre = x.Especie,
+                    NombreClase = x.IdClaseNavigation != null ? x.IdClaseNavigation.Nombre ?? " " : " ",
+                    IdClase = x.IdClaseNavigation != null ? x.IdClaseNavigation.Id : 0,
+                    Peso = x.Peso.ToString() ?? " ",
+                    Habitat = x.Habitat ?? " ",
+                    IdFoto = x.Id,
+                    Tamaño = x.Tamaño ?? 0,
+                    Descripcion = x.Observaciones ?? " ",
+
+                }).First();
+            IndexEspecieViewModel vm = new()
+            {
+                FullAnimalDesc = InfoAnimal
+            };
             return View(vm);
         }
     }

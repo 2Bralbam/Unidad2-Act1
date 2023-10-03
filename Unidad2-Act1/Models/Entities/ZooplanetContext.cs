@@ -31,56 +31,36 @@ public partial class ZooplanetContext : DbContext
 
         modelBuilder.Entity<Clase>(entity =>
         {
-            entity.HasKey(e => e.Idclase).HasName("PRIMARY");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity
                 .ToTable("clase")
                 .HasCharSet("utf8mb3")
                 .UseCollation("utf8mb3_general_ci");
 
-            entity.Property(e => e.Idclase)
-                .ValueGeneratedNever()
-                .HasColumnName("idclase");
-            entity.Property(e => e.Nombre)
-                .HasMaxLength(45)
-                .HasColumnName("nombre");
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Descripcion).HasColumnType("text");
+            entity.Property(e => e.Nombre).HasMaxLength(45);
         });
 
         modelBuilder.Entity<Especies>(entity =>
         {
-            entity.HasKey(e => e.Especie).HasName("PRIMARY");
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity
                 .ToTable("especies")
                 .HasCharSet("utf8mb3")
                 .UseCollation("utf8mb3_general_ci");
 
-            entity.HasIndex(e => e.Clase, "fk_especie_clase_idx");
+            entity.HasIndex(e => e.IdClase, "fk_especie_clase_idx");
 
-            entity.Property(e => e.Especie)
-                .HasMaxLength(45)
-                .HasColumnName("especie");
-            entity.Property(e => e.Clase).HasColumnName("clase");
-            entity.Property(e => e.Habitat)
-                .HasMaxLength(45)
-                .HasColumnName("habitat");
-            entity.Property(e => e.Imagen)
-                .HasMaxLength(100)
-                .HasColumnName("imagen");
-            entity.Property(e => e.Observaciones)
-                .HasMaxLength(100)
-                .HasColumnName("observaciones");
-            entity.Property(e => e.Orden)
-                .HasMaxLength(45)
-                .HasColumnName("orden");
-            entity.Property(e => e.Oviparo).HasColumnName("oviparo");
-            entity.Property(e => e.Peso)
-                .HasColumnType("double(7,2)")
-                .HasColumnName("peso");
-            entity.Property(e => e.Tamaño).HasColumnName("tamaño");
+            entity.Property(e => e.Especie).HasMaxLength(45);
+            entity.Property(e => e.Habitat).HasMaxLength(45);
+            entity.Property(e => e.Observaciones).HasMaxLength(100);
+            entity.Property(e => e.Peso).HasColumnType("double(7,2)");
 
-            entity.HasOne(d => d.ClaseNavigation).WithMany(p => p.Especies)
-                .HasForeignKey(d => d.Clase)
+            entity.HasOne(d => d.IdClaseNavigation).WithMany(p => p.Especies)
+                .HasForeignKey(d => d.IdClase)
                 .HasConstraintName("fk_especie_clase");
         });
 
